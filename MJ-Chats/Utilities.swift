@@ -16,4 +16,15 @@ class Utilities {
 		vc.present(alert, animated: true, completion: nil)
 		
 	}
+	
+	func getCurrentDate() -> String {
+		let today:Date = Date()
+		let dateFormatter: DateFormatter = DateFormatter()
+		
+		dateFormatter.dateFormat = "MM-dd-yyy HH:mm"
+		
+		return dateFormatter.string(from: today)
+	}
+	
+	
 }

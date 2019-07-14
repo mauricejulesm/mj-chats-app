@@ -97,18 +97,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 	}
 	
 	func sentMessage(data:[String:String]) {
-		let packet = data
+		var packet = data
+		packet[Constants.MessageFields.dateTime] = Utilities().getCurrentDate()
+		
 		self.ref.child("messages").childByAutoId().setValue(packet)
 		
 	}
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		let data = [Constants.MessageFields.text: textField.text! as String]
-		sentMessage(data: data)
-		
-		print("Ended editing")
+		if textField.text != "" {
+			sentMessage(data: data)
+		}
+
+		textField.text = ""
 		self.view.endEditing(true)
 		return true
+		
 	}
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
@@ -124,10 +129,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 		let messageSnap:DataSnapshot = self.messages[indexPath.row]
 		let message = messageSnap.value as! Dictionary<String, String>
 		if let text = message[Constants.MessageFields.text] as String?{
-			
 			cell.textLabel?.text = text
 		}
 		
+		if let subText = message[Constants.MessageFields.dateTime] {
+			cell.detailTextLabel?.text = subText
+		}
 		return cell
 		
 		
