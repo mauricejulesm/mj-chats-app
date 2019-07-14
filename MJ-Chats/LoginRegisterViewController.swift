@@ -48,6 +48,8 @@ class LoginRegisterViewController: UIViewController {
 				print(error.localizedDescription)
 				return
 			}
+			
+			self.performSegue(withIdentifier: "chatAreaSegue", sender: self)
 			print("Awesome !, signed in successfully!")
 		}
 		
@@ -100,7 +102,7 @@ class LoginRegisterViewController: UIViewController {
 						}
 						self.dismiss(animated: true, completion: nil)
 					})
-					
+					Utilities().showAlert(title: "Success", message: "Registration was successful. Now you can login", vc: self)
 				}
 				else{
 					Utilities().showAlert(title: "Error", message: "Passwords do not match", vc: self)

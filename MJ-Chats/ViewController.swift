@@ -67,16 +67,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		
-		// logging out the user
-		/*
-		let firebaseAuth = Auth.auth()
-		do {
-		try firebaseAuth.signOut()
-		} catch let signOutError as NSError {
-		print("Error signing out: \(signOutError)")
-		}
-		
-		*/
 		// cheking the current user
 		
 		if (Auth.auth().currentUser == nil) {
@@ -138,6 +128,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 		return cell
 		
 		
+	}
+	
+	@IBAction func clickedLogoutBtn(_ sender: Any) {
+		
+		// logging out the user
+		/*
+		let firebaseAuth = Auth.auth()
+		do {
+		try firebaseAuth.signOut()
+		} catch let signOutError as NSError {
+		print("Error signing out: \(signOutError)")
+		}
+		
+		*/
+		self.performSegue(withIdentifier: "logoutSegue", sender: self)
 	}
 }
 
