@@ -133,15 +133,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 	@IBAction func clickedLogoutBtn(_ sender: Any) {
 		
 		// logging out the user
-		/*
-		let firebaseAuth = Auth.auth()
-		do {
-		try firebaseAuth.signOut()
-		} catch let signOutError as NSError {
-		print("Error signing out: \(signOutError)")
-		}
 		
-		*/
+//		let firebaseAuth = Auth.auth()
+//		do {
+//		try firebaseAuth.signOut()
+//		} catch let signOutError as NSError {
+//		print("Error signing out: \(signOutError)")
+//		}
+		
+
 		self.performSegue(withIdentifier: "logoutSegue", sender: self)
 	}
 }
